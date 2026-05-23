@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maja & Victor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --cream: #FAF8F3;
+    --warm-white: #F5F2EA;
+    --gold: #B8956A;
+    --gold-light: #D4B896;
+    --dark: #2C2820;
+    --mid: #6B6358;
+    --light-border: rgba(184,149,106,0.25);
+  }
+  html { font-size: 14px; }
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--dark);
+    letter-spacing: 0.02em;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center; gap: 2.5rem;
+    padding: 1.2rem 2rem;
+    background: rgba(250,248,243,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--light-border);
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+  }
+  nav a { text-decoration: none; color: var(--mid); transition: color 0.2s; cursor: pointer; }
+  nav a:hover { color: var(--gold); }
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: var(--cream);
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(184,149,106,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; letter-spacing: 0.3em;
+    color: var(--gold); margin-bottom: 1.5rem;
+    font-style: italic; font-weight: 300;
+  }
+  .names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--dark); margin-bottom: 0.5rem;
+  }
+  .names em { font-style: italic; }
+  .ampersand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--gold); font-style: italic; font-weight: 300;
+    display: block; margin: 0.2rem 0;
+  }
+  .date-line {
+    margin-top: 2rem;
+    font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--mid);
+  }
+  .divider {
+    width: 60px; height: 0.5px;
+    background: var(--gold-light);
+    margin: 1.5rem auto;
+  }
+  .location-line {
+    font-size: 0.8rem; letter-spacing: 0.1em;
+    color: var(--mid);
+  }
+  .cta-btn {
+    display: inline-block; margin-top: 2.5rem;
+    padding: 0.85rem 2.5rem;
+    border: 0.5px solid var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    transition: background 0.2s, color 0.2s; cursor: pointer;
+    background: transparent;
+  }
+  .cta-btn:hover { background: var(--gold); color: var(--cream); }
+
+  section { padding: 5rem 1.5rem; max-width: 820px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem; text-align: center;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 300;
+    text-align: center; margin-bottom: 3rem; line-height: 1.2;
+    font-style: italic;
+  }
+
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 0.5px; background: var(--light-border);
+    transform: translateX(-50%);
+  }
+  .timeline-item {
+    display: grid; grid-template-columns: 1fr 40px 1fr;
+    align-items: start; gap: 0; margin-bottom: 3rem;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-content-left { text-align: right; padding-right: 1.5rem; }
+  .timeline-content-right { text-align: left; padding-left: 1.5rem; }
+  .timeline-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--cream); border: 1.5px solid var(--gold);
+    margin: 4px auto 0; position: relative; z-index: 1;
+    grid-column: 2;
+  }
+  .timeline-time {
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.3rem;
+  }
+  .timeline-event {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 400; color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+  .timeline-desc { font-size: 0.8rem; color: var(--mid); line-height: 1.6; }
+
+  .venue-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .venue-card {
+    border: 0.5px solid var(--light-border);
+    padding: 1.75rem;
+    background: var(--warm-white);
+  }
+  .venue-card-icon { font-size: 1.2rem; color: var(--gold); margin-bottom: 0.75rem; }
+  .venue-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 400; margin-bottom: 0.5rem;
+  }
+  .venue-card-text { font-size: 0.8rem; color: var(--mid); line-height: 1.7; }
+  .venue-card a { color: var(--gold); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.05em; }
+
+  .rsvp-section {
+    background: var(--warm-white);
+    border-top: 0.5px solid var(--light-border);
+    border-bottom: 0.5px solid var(--light-border);
+    text-align: center; padding: 5rem 1.5rem;
+  }
+  .rsvp-inner { max-width: 520px; margin: 0 auto; }
+  .rsvp-body { font-size: 0.85rem; color: var(--mid); line-height: 1.8; margin-bottom: 2rem; }
+  .rsvp-deadline { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); margin-top: 1rem; text-transform: uppercase; }
+
+  .registry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .registry-card {
+    border: 0.5px solid var(--light-border);
+    padding: 1.5rem 1.25rem; text-align: center;
+    background: var(--warm-white); transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .registry-card:hover { border-color: var(--gold); }
+  .registry-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 400; margin-bottom: 0.3rem;
+  }
+  .registry-card-text { font-size: 0.75rem; color: var(--mid); }
+
+  footer {
+    text-align: center; padding: 3rem 1.5rem;
+    font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold);
+    text-transform: uppercase;
+    border-top: 0.5px solid var(--light-border);
+  }
+
+  @media (max-width: 600px) {
+    .venue-grid, .registry-grid { grid-template-columns: 1fr; }
+    .timeline::before { left: 20px; }
+    .timeline-item { grid-template-columns: 20px 1fr; }
+    .timeline-content-left { display: none; }
+    .timeline-content-right { grid-column: 2; }
+    .timeline-dot { grid-column: 1; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a onclick="document.getElementById('schedule').scrollIntoView({behavior:'smooth'})">Schedule</a>
+  <a onclick="document.getElementById('venue').scrollIntoView({behavior:'smooth'})">Venue</a>
+  <a onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">RSVP</a>
+  <a onclick="document.getElementById('registry').scrollIntoView({behavior:'smooth'})">Registry</a>
+</nav>
+
+<div class="hero">
+  <div class="ornament">Together at last</div>
+  <div class="names">
+    <em>Maja</em>
+    <span class="ampersand">&</span>
+    <em>Victor</em>
+  </div>
+  <div class="date-line">Thursday, Third of September · Two Thousand & Twenty Seven</div>
+  <div class="divider"></div>
+  <div class="location-line">Linden House · Hammersmith · London</div>
+  <a class="cta-btn" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">Kindly RSVP</a>
+</div>
+
+<section id="schedule">
+  <div class="section-label">The day</div>
+  <h2 class="section-title">Order of Celebrations</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-content-left">
+        <div class="timeline-time">3:00 pm</div>
+        <div class="timeline-event">Ceremony</div>
+        <div class="timeline-desc">Please be seated by 2:45 pm</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content-right" style="visibility:hidden"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content-left" style="visibility:hidden"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content-right">
+        <div class="timeline-time">4:00 pm</div>
+        <div class="timeline-event">Drinks Reception</div>
+        <div class="timeline-desc">Champagne & canapés on the riverside terrace</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content-left">
+        <div class="timeline-time">6:30 pm</div>
+        <div class="timeline-event">Wedding Breakfast</div>
+        <div class="timeline-desc">Seated dinner in the main hall</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content-right" style="visibility:hidden"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content-left" style="visibility:hidden"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content-right">
+        <div class="timeline-time">9:00 pm</div>
+        <div class="timeline-event">Evening Reception</div>
+        <div class="timeline-desc">Dancing, music & celebration into the night</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider" style="margin: 0 auto;"></div>
+
+<section id="venue">
+  <div class="section-label">Getting here</div>
+  <h2 class="section-title">Venue & Travel</h2>
+  <p style="text-align:center; font-size:0.85rem; color:var(--mid); line-height:1.8; max-width:480px; margin:0 auto 2.5rem;">
+    Linden House sits right on the Thames at Hammersmith — a beautiful Edwardian riverside venue. 60 Upper Mall, London W6 9TA.
+  </p>
+  <div class="venue-grid">
+    <div class="venue-card">
+      <div class="venue-card-icon">⊙</div>
+      <div class="venue-card-title">By Tube</div>
+      <div class="venue-card-text">Ravenscourt Park (District line) is a 5 minute walk. Stamford Brook is also nearby. Avoid Hammersmith station — it's a 15 min walk.</div>
+    </div>
+    <div class="venue-card">
+      <div class="venue-card-icon">⊡</div>
+      <div class="venue-card-title">By Car</div>
+      <div class="venue-card-text">Limited parking on Upper Mall. We recommend arriving by public transport or taxi. Paid parking available on King Street nearby.</div>
+    </div>
+    <div class="venue-card">
+      <div class="venue-card-icon">◎</div>
+      <div class="venue-card-title">By Taxi</div>
+      <div class="venue-card-text">Ask for Linden House, 60 Upper Mall, W6 9TA. The venue is tucked along the riverside path — your driver may need guidance on the final approach.</div>
+    </div>
+    <div class="venue-card">
+      <div class="venue-card-icon">◇</div>
+      <div class="venue-card-title">Accommodation</div>
+      <div class="venue-card-text">We recommend nearby hotels in Hammersmith and Chiswick. See our <a href="#">accommodation guide</a> for curated options at various price points.</div>
+    </div>
+  </div>
+</section>
+
+<div id="rsvp" class="rsvp-section">
+  <div class="rsvp-inner">
+    <div class="section-label">You're invited</div>
+    <h2 class="section-title" style="margin-bottom:1.5rem;">Kindly RSVP</h2>
+    <p class="rsvp-body">
+      We would be so honoured to celebrate with you. Please let us know if you'll be joining us — and don't forget to share any dietary requirements.
+    </p>
+    <a class="cta-btn" href="YOUR_FILLOUT_FORM_URL" target="_blank">Respond here</a>
+    <div class="rsvp-deadline">Kindly respond by 3rd September 2026</div>
+  </div>
+</div>
+
+<section id="registry">
+  <div class="section-label">Gifts</div>
+  <h2 class="section-title">Registry</h2>
+  <p style="text-align:center; font-size:0.85rem; color:var(--mid); line-height:1.8; max-width:480px; margin:0 auto 2.5rem;">
+    Your presence is the greatest gift. Should you wish to contribute something, we've listed a few options below.
+  </p>
+  <div class="registry-grid">
+    <div class="registry-card">
+      <div class="registry-card-name">John Lewis</div>
+      <div class="registry-card-text">Home & living wishlist</div>
+    </div>
+    <div class="registry-card">
+      <div class="registry-card-name">Honeymoon Fund</div>
+      <div class="registry-card-text">Contribute to our travels</div>
+    </div>
+    <div class="registry-card">
+      <div class="registry-card-name">Charity</div>
+      <div class="registry-card-text">Donate in our name</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Maja & Victor · 3 September 2027 · Linden House, London
+</footer>
+
+</body>
+</html>
