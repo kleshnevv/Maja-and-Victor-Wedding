@@ -162,7 +162,7 @@
   .rsvp-body { font-size: 0.85rem; color: var(--mid); line-height: 1.8; margin-bottom: 2rem; }
   .rsvp-deadline { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); margin-top: 1rem; text-transform: uppercase; }
 
-  .registry-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .registry-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 520px; margin: 0 auto; }
   .registry-card {
     border: 0.5px solid var(--light-border);
     padding: 1.5rem 1.25rem; text-align: center;
@@ -208,7 +208,7 @@
     <span class="ampersand">&</span>
     <em>Victor</em>
   </div>
-  <div class="date-line">Thursday, Third of September · 2027</div>
+  <div class="date-line">Friday, September 3rd · 2027</div>
   <div class="divider"></div>
   <div class="location-line">Linden House · Hammersmith · London · W6 9TA</div>
   <a class="cta-btn" onclick="document.getElementById('rsvp').scrollIntoView({behavior:'smooth'})">Kindly RSVP</a>
@@ -218,6 +218,26 @@
   <div class="section-label">The day</div>
   <h2 class="section-title">Order of Celebrations</h2>
   <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-content-left">
+        <div class="timeline-time">2:00 pm</div>
+        <div class="timeline-event">Arrival</div>
+        <div class="timeline-desc">Guests welcome from 2:00 pm</div>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content-right" style="visibility:hidden"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content-left" style="visibility:hidden"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content-right">
+        <div class="timeline-time">2:30 pm</div>
+        <div class="timeline-event">Arrival of the Groom</div>
+        <div class="timeline-desc"></div>
+      </div>
+    </div>
 
     <div class="timeline-item">
       <div class="timeline-content-left">
@@ -274,7 +294,12 @@
     <div class="venue-card">
       <div class="venue-card-icon">⊙</div>
       <div class="venue-card-title">By Tube</div>
-      <div class="venue-card-text">Ravenscourt Park (District line) is a 5 minute walk. Stamford Brook is also nearby. Avoid Hammersmith station — it's a 15 min walk.</div>
+      <div class="venue-card-text">Ravenscourt Park (District line) is a 5 minute walk. Stamford Brook and Hammersmith are also nearby options.</div>
+    </div>
+    <div class="venue-card">
+      <div class="venue-card-icon">✈</div>
+      <div class="venue-card-title">From Heathrow</div>
+      <div class="venue-card-text">Take the Piccadilly line direct to Hammersmith — approximately 40 minutes. From there it's a short walk or taxi along the river to the venue.</div>
     </div>
     <div class="venue-card">
       <div class="venue-card-icon">⊡</div>
@@ -320,10 +345,6 @@
     <div class="registry-card">
       <div class="registry-card-name">Honeymoon Fund</div>
       <div class="registry-card-text">Contribute to our travels</div>
-    </div>
-    <div class="registry-card">
-      <div class="registry-card-name">Charity</div>
-      <div class="registry-card-text">Donate in our name</div>
     </div>
   </div>
 </section>
